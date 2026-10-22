@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ButtonController : MonoBehaviour
 {
     public Button HireWorker;
-    public AddGold AddGold;
+    public AddCurrency AddCurrency;
 
     private int workerCost = 10;
+    private int workerCount = 0;
+    private bool isTimerRunning = false;
 
     void Start()
     {
@@ -15,7 +18,7 @@ public class ButtonController : MonoBehaviour
 
     public void OnSomethingHappened()
     {
-        if (AddGold.goldAmount >= workerCost)
+        if (AddCurrency.currencyAmount >= workerCost)
         {
             HireWorker.interactable = true;
         }
@@ -27,13 +30,40 @@ public class ButtonController : MonoBehaviour
 
     public void OnHireWorkerClick()
     {
-        AddGold.goldAmount -= workerCost;
-
+        AddCurrency.currencyAmount -= workerCost;
         workerCost += 10;
+        workerCount++;
 
-        AddGold.goldText.text = "Золото: " + AddGold.goldAmount;
+        UpdateGoldUI();
 
-        HireWorker.interactable = false;
+        if (!isTimerRunning)
+        {
+            StartCoroutine(AutoGoldIncome());
+        }
 
+        OnSomethingHappened();
+    }
+
+    IEnumerator AutoGoldIncome()
+    {
+        isTimerRunning = true;
+
+        while (workerCount > 0)
+        {
+            yield return new WaitForSeconds(1f);
+
+            AddCurrency.currencyAmount += workerCount;
+
+            UpdateGoldUI();
+
+            OnSomethingHappened();
+        }
+
+        isTimerRunning = false;
+    }
+
+    private void UpdateGoldUI()
+    {
+        AddCurrency.currencyText.text = "Валюта: " + AddCurrency.currencyAmount;
     }
 }
