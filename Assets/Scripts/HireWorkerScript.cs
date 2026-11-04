@@ -2,60 +2,71 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class ButtonController : MonoBehaviour
+public class HireWorkerScript : MonoBehaviour
 {
     public Button HireWorker;
     public AddCurrency AddCurrency;
+    public AddWorkers AddWorkers;
 
     private int workerCost = 10;
-    private int workerCount = 0;
     private bool isTimerRunning = false;
 
-    void Start()
+    private void Start()
     {
-        HireWorker.interactable = false;
+        OnSomethingHappened();
     }
 
     public void OnSomethingHappened()
     {
-        if (AddCurrency.currencyAmount >= workerCost)
+        if (HireWorker != null)
         {
-            HireWorker.interactable = true;
+            HireWorker.interactable = AddCurrency != null &&
+                                      AddCurrency.currencyAmount >= workerCost;
         }
-        else
+
+        if (AddWorkers != null && AddWorkers.workerAmount > 0 && !isTimerRunning)
         {
-            HireWorker.interactable = false;
+            StartCoroutine(AutoGoldIncome());
         }
     }
 
     public void OnHireWorkerClick()
     {
-        AddCurrency.currencyAmount -= workerCost;
-        workerCost += 10;
-        workerCount++;
-
-        UpdateGoldUI();
-
-        if (!isTimerRunning)
+        if (AddCurrency == null || AddWorkers == null)
         {
-            StartCoroutine(AutoGoldIncome());
+            Debug.LogError("HireWorkerScript: назначьте AddCurrency и AddWorkers в Inspector.", this);
+            return;
         }
 
+        if (AddCurrency.currencyAmount < workerCost)
+        {
+            OnSomethingHappened();
+            return;
+        }
+
+        AddCurrency.currencyAmount -= workerCost;
+        workerCost += 10;
+
+        AddWorkers.AddWorker();
+        UpdateGoldUI();
         OnSomethingHappened();
     }
 
-    IEnumerator AutoGoldIncome()
+    private IEnumerator AutoGoldIncome()
     {
         isTimerRunning = true;
 
-        while (workerCount > 0)
+        while (AddWorkers != null && AddWorkers.workerAmount > 0)
         {
             yield return new WaitForSeconds(1f);
 
-            AddCurrency.currencyAmount += workerCount;
+            if (AddCurrency == null || AddWorkers == null)
+            {
+                break;
+            }
 
+            AddCurrency.currencyAmount += AddWorkers.workerAmount;
             UpdateGoldUI();
-
             OnSomethingHappened();
         }
 
@@ -64,6 +75,10 @@ public class ButtonController : MonoBehaviour
 
     private void UpdateGoldUI()
     {
-        AddCurrency.currencyText.text = "Валюта: " + AddCurrency.currencyAmount;
+        if (AddCurrency != null && AddCurrency.currencyText != null)
+        {
+            AddCurrency.currencyText.text = "Валюта: " + AddCurrency.currencyAmount;
+        }
     }
 }
+

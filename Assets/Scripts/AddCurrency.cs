@@ -10,8 +10,16 @@ public class AddCurrency : MonoBehaviour
     public void ClickButton()
     {
         currencyAmount++;
-        currencyText.text = "Валюта: " + currencyAmount;
-        FindAnyObjectByType<ButtonController>().OnSomethingHappened();
 
+        if (currencyText != null)
+        {
+            currencyText.text = "Валюта: " + currencyAmount;
+        }
+
+        HireWorkerScript hireWorkerScript = FindAnyObjectByType<HireWorkerScript>();
+        if (hireWorkerScript != null)
+        {
+            hireWorkerScript.OnSomethingHappened();
+        }
     }
 }
