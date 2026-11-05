@@ -1,0 +1,3 @@
+﻿Build path: C:/Users/max.major/My-project/Builds/05.11.2026 Fix
+Build number: 0
+PluginYG version: 2.0092
