@@ -7,19 +7,43 @@ public class AddCurrency : MonoBehaviour
 
     public int currencyAmount = 0;
 
+    // Улучшение клика
+    public int clickValue = 1;
+    public int empowerClickCost = 5;
+
+    void Start()
+    {
+        UpdateCurrencyUI();
+    }
+
     public void ClickButton()
     {
-        currencyAmount++;
+        currencyAmount += clickValue;
 
-        if (currencyText != null)
-        {
-            currencyText.text = "Валюта: " + currencyAmount;
-        }
+        UpdateCurrencyUI();
 
-        HireWorkerScript hireWorkerScript = FindAnyObjectByType<HireWorkerScript>();
-        if (hireWorkerScript != null)
-        {
-            hireWorkerScript.OnSomethingHappened();
-        }
+        FindAnyObjectByType<HireWorkerScript>()
+            .OnSomethingHappened();
+    }
+
+    public void BuyClickUpgrade()
+    {
+        if (currencyAmount < empowerClickCost)
+            return;
+
+        currencyAmount -= empowerClickCost;
+
+        clickValue++;
+        empowerClickCost += 5;
+
+        UpdateCurrencyUI();
+
+        FindAnyObjectByType<HireWorkerScript>()
+            .OnSomethingHappened();
+    }
+
+    private void UpdateCurrencyUI()
+    {
+        currencyText.text = "Валюта: " + currencyAmount;
     }
 }
