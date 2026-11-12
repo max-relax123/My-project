@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class AddCurrency : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class AddCurrency : MonoBehaviour
     public int currencyAmount = 0;
     public int clickValue = 1;
     public int empowerClickCost = 5;
+    public Button empowerClickButton;
 
     void Start()
     {
         UpdateCurrencyUI();
+        UpdateEmpowerClickButton();
     }
 
     public void ClickButton()
@@ -40,8 +43,24 @@ public class AddCurrency : MonoBehaviour
             .OnSomethingHappened();
     }
 
+    void UpdateEmpowerClickButton()
+    {
+        if (currencyAmount >= empowerClickCost)
+        {
+            empowerClickButton.interactable = true;
+        }
+
+        else
+        {
+            empowerClickButton.interactable = false;
+        }
+
+    }
+
     private void UpdateCurrencyUI()
     {
         currencyText.text = "Валюта: " + currencyAmount;
+
+        UpdateEmpowerClickButton();
     }
 }
