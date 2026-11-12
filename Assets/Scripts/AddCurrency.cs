@@ -6,8 +6,6 @@ public class AddCurrency : MonoBehaviour
     public TextMeshProUGUI currencyText;
 
     public int currencyAmount = 0;
-
-    // Улучшение клика
     public int clickValue = 1;
     public int empowerClickCost = 5;
 
