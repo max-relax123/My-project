@@ -753,7 +753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.025, y: 0.029000001}
   m_AnchorMax: {x: 0.1766376, y: 0.15635593}
-  m_AnchoredPosition: {x: 0, y: -0.69088745}
+  m_AnchoredPosition: {x: 0, y: -0.69091797}
   m_SizeDelta: {x: -1.1461029, y: -1.4005003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197712045
@@ -1996,8 +1996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 548, y: 900}
-  m_SizeDelta: {x: 1101, y: 505}
+  m_AnchoredPosition: {x: 649, y: 874}
+  m_SizeDelta: {x: 1309.9678, y: 505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &802401464
 GameObject:
@@ -2011,7 +2011,7 @@ GameObject:
   - component: {fileID: 802401467}
   - component: {fileID: 802401466}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: FlagFirstOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2207,6 +2207,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806849004}
   m_CullTransparentMesh: 1
+--- !u!1 &834927902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834927904}
+  - component: {fileID: 834927903}
+  m_Layer: 0
+  m_Name: FlagManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &834927903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834927902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc3dd6386a0cb34b8603bec353d62a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwitchFlags
+  flagFirstOption: {fileID: 802401464}
+  flagSecondOption: {fileID: 1015709423}
+--- !u!4 &834927904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834927902}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 63.95628, y: 913.6917, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878888132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,7 +2448,7 @@ GameObject:
   - component: {fileID: 1015709426}
   - component: {fileID: 1015709425}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: FlagSecondOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2679,7 +2725,7 @@ GameObject:
   - component: {fileID: 1108566244}
   - component: {fileID: 1108566243}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FlagThirdOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3228,7 +3274,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1351229120}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 834927903}
+        m_TargetAssemblyTypeName: SwitchFlags, Assembly-CSharp
+        m_MethodName: GoForward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1351229120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3847,7 +3905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.016286071, y: 0.20833936}
   m_AnchorMax: {x: 0.16442344, y: 0.26930788}
-  m_AnchoredPosition: {x: 0.2850952, y: -0.42852783}
+  m_AnchoredPosition: {x: 0.28503418, y: -0.42852783}
   m_SizeDelta: {x: -0.1364913, y: -1.2676048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497927534
@@ -3893,7 +3951,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1497927535}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1497927535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5276,3 +5346,4 @@ SceneRoots:
   - {fileID: 1032620489}
   - {fileID: 739006582}
   - {fileID: 1002921166}
+  - {fileID: 834927904}
