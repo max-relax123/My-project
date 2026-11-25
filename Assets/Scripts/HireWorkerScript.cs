@@ -13,16 +13,27 @@ public class HireWorkerScript : MonoBehaviour
 
     private void Start()
     {
+        UpdateButtonState();
         OnSomethingHappened();
     }
 
-    public void OnSomethingHappened()
+    private void Update()
+    {
+        UpdateButtonState();
+    }
+
+    private void UpdateButtonState()
     {
         if (HireWorker != null)
         {
             HireWorker.interactable = AddCurrency != null &&
                                       AddCurrency.currencyAmount >= workerCost;
         }
+    }
+
+    public void OnSomethingHappened()
+    {
+        UpdateButtonState();
 
         if (AddWorkers != null && AddWorkers.workerAmount > 0 && !isTimerRunning)
         {
@@ -40,7 +51,7 @@ public class HireWorkerScript : MonoBehaviour
 
         if (AddCurrency.currencyAmount < workerCost)
         {
-            OnSomethingHappened();
+            UpdateButtonState();
             return;
         }
 
@@ -81,4 +92,3 @@ public class HireWorkerScript : MonoBehaviour
         }
     }
 }
-

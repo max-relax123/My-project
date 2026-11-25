@@ -1599,7 +1599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daeb5b5951389634cbc1cf5e5be27841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonController
-  HireWorker: {fileID: 0}
+  HireWorker: {fileID: 500745631}
   AddCurrency: {fileID: 1995170981}
   AddWorkers: {fileID: 1633460750}
 --- !u!4 &426438982
